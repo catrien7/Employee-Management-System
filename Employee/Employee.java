@@ -9,14 +9,14 @@ abstract public class Employee {
     static private int noOfEmployee=0;
     private int ID;
     private String name;
-    private Department dep;
+    private DepartmentType dep;
     private int age;
     private Position po;
     private EmployeeType type;
     
     // Expects valid parameters (name, dep, age, po, type).
     // Note: Does NOT automatically add the employee to the HashMap.
-    public Employee (String name, Department dep, int age, Position po, EmployeeType type){
+    public Employee (String name, DepartmentType dep, int age, Position po, EmployeeType type){
         this.ID = newID();
         this.name = name;
         this.dep = dep;
@@ -25,7 +25,7 @@ abstract public class Employee {
         this.type = type;
     }
 
-    public Employee (int ID, String name, Department dep, int age, Position po, EmployeeType type){
+    public Employee (int ID, String name, DepartmentType dep, int age, Position po, EmployeeType type){
         this.ID=ID;
         this.name = name;
         this.dep = dep;
@@ -59,11 +59,11 @@ abstract public class Employee {
         
     }
 
-    public Department getDep() {
+    public DepartmentType getDep() {
         return dep;
     }
 
-    public void setDep(Department dep) {
+    public void setDep(DepartmentType dep) {
         this.dep = dep;
     }
 
@@ -103,6 +103,13 @@ abstract public class Employee {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "Employee [ID=" + ID + "\nname=" + name + "\ndep=" + dep + "\nage=" + age + "\npo=" + po + "\ntype="
+                + type + "]";
+    }
+
+    
    
 
 
