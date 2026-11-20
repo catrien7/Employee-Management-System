@@ -9,26 +9,26 @@ abstract public class Employee {
     static private int noOfEmployee=0;
     private int ID;
     private String name;
-    private DepartmentType dep;
+    private String dep;
     private int age;
     private Position po;
     private EmployeeType type;
     
     // Expects valid parameters (name, dep, age, po, type).
     // Note: Does NOT automatically add the employee to the HashMap.
-    public Employee (String name, DepartmentType dep, int age, Position po, EmployeeType type){
+    public Employee (String name, String dep, int age, Position po, EmployeeType type){
         this.ID = newID();
         this.name = name;
-        this.dep = dep;
+        setDep(dep);
         this.age = (age > 0) ? age : 18; 
         this.po = po;
         this.type = type;
     }
 
-    public Employee (int ID, String name, DepartmentType dep, int age, Position po, EmployeeType type){
-        this.ID=ID;
+    public Employee (int ID, String name, String dep, int age, Position po, EmployeeType type){
+        setID(ID);
         this.name = name;
-        this.dep = dep;
+        setDep(dep);
         this.age = (age > 0) ? age : 18; 
         this.po = po;
         this.type = type;
@@ -59,12 +59,18 @@ abstract public class Employee {
         
     }
 
-    public DepartmentType getDep() {
+    public String getDep() {
         return dep;
     }
 
-    public void setDep(DepartmentType dep) {
-        this.dep = dep;
+    public Boolean setDep(String dep) {
+        if(DepHashMap.doesExistByKey(dep)){
+            //fi el function by7sl validation 
+            this.dep = dep;
+            return true;
+        }
+        else return false;
+        
     }
 
     public int getAge() {
