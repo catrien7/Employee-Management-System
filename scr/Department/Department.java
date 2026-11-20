@@ -1,8 +1,8 @@
 package Department;
-
+import java.io.Serializable;
 import Validation.DepNameValidation;
 
-public class Department {
+public class Department implements Serializable {
     private static int noOfDeps;
     private int ID;
     private String name;

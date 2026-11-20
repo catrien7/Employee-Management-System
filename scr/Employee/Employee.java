@@ -1,11 +1,10 @@
 package Employee;
-
 import Department.*;
 import HashMap.*;
 import Validation.*;
+import java.io.Serializable;
 
-
-abstract public class Employee {
+abstract public class Employee implements Serializable {
     static private int noOfEmployee=0;
     private int ID;
     private String name;
