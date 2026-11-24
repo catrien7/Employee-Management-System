@@ -2,6 +2,7 @@ package HashMap;
 
 import java.util.HashMap;
 import Department.Department;
+import Employee.Employee;
 import Validation.*;
 
 public abstract class DepHashMap  {
@@ -51,6 +52,10 @@ public abstract class DepHashMap  {
         }
         return deps.get(normalized);
     }
+    static public void uploadDepartments(HashMap<String, Department> loadedDepartments){
+       deps.putAll(loadedDepartments);
+    }
+
 }
 
     
