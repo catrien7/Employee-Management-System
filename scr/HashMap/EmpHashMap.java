@@ -12,6 +12,10 @@ public abstract class EmpHashMap {
         return employees.get(x);
     }
 
+    public static HashMap<Integer, Employee> getEmployees() {
+        return employees;
+    }
+
     static public Employee addEmp(int id, Employee emp){
         Integer x= new Integer(id);
         return employees.putIfAbsent(x,emp);
@@ -30,7 +34,9 @@ public abstract class EmpHashMap {
         return employees.containsValue(emp);
     }
 
-
+    static public void uploadEmployees(HashMap<Integer, Employee> loadedEmployees){
+       employees.putAll(loadedEmployees);
+    }
 
 
     
