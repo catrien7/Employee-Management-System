@@ -1,6 +1,6 @@
 
 package Employee;
-import Department.Department;
+import Department.*;
 
 
 public class FullTimeEmp extends Employee{
@@ -20,7 +20,7 @@ public class FullTimeEmp extends Employee{
  
     }
     @Override
-    int calcSalary(){
+    public double calcSalary(){
         return basicSalary+monthlyBonus;
     }
     

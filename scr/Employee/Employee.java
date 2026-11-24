@@ -1,45 +1,54 @@
 package Employee;
+
 import Department.*;
 import HashMap.*;
 import Validation.*;
 import java.io.Serializable;
 
 abstract public class Employee implements Serializable {
-    static private int noOfEmployee=0;
+    static private int noOfEmployee = 0;
     private int ID;
     private String name;
     private String dep;
     private int age;
     private Position po;
     private EmployeeType type;
-    
+
     // Expects valid parameters (name, dep, age, po, type).
     // Note: Does NOT automatically add the employee to the HashMap.
-    public Employee (String name, String dep, int age, Position po, EmployeeType type){
+    public Employee(String name, String dep, int age, Position po, EmployeeType type) {
+        setEmployee(name, dep, age, po, type);
         this.ID = newID();
-        this.name = name;
+    }
+
+    public Employee(int ID, String name, String dep, int age, Position po, EmployeeType type) {
+        setEmployee(name, dep, age, po, type);
+        if (!setID(ID))
+            this.ID = newID();
+    }
+
+    private void setEmployee(String name, String dep, int age, Position po, EmployeeType type) {
+        setName(name);
         setDep(dep);
-        this.age = (age > 0) ? age : 18; 
+        this.age = (age > 0) ? age : 18;
         this.po = po;
         this.type = type;
     }
+    /* 
+    private int newID() {
+        return ++noOfEmployee + 1000;
+    }
+    */
 
-    public Employee (int ID, String name, String dep, int age, Position po, EmployeeType type){
-        setID(ID);
-        this.name = name;
-        setDep(dep);
-        this.age = (age > 0) ? age : 18; 
-        this.po = po;
-        this.type = type;
-        
+    private int newID() {
+        int candidate;
+        do {
+            candidate = ++noOfEmployee + 1000;
+        } while (EmpHashMap.doesExist(candidate));
+        return candidate;
     }
 
-    
-    int newID(){
-        return ++noOfEmployee +1000;
-    }
-
-    abstract int calcSalary();
+    public abstract double calcSalary();
 
     public static int getNoOfEmployee() {
         return noOfEmployee;
@@ -53,23 +62,22 @@ abstract public class Employee implements Serializable {
         if (EmpIDValidation.validateEmpID(id)) {
             this.ID = id;
             return true;
-        }
-        else return false;
-        
+        } else
+            return false;
+
     }
 
     public String getDep() {
         return dep;
     }
 
-    public Boolean setDep(String dep) {
-        if(DepHashMap.doesExistByKey(dep)){
-            //fi el function by7sl validation 
-            this.dep = dep;
+    public boolean setDep(String dep) {
+        Department found = DepHashMap.search(dep); // fi el function by7sl validation
+        if (found != null) {
+            this.dep = found.getName();
             return true;
         }
-        else return false;
-        
+        return false;
     }
 
     public int getAge() {
@@ -77,7 +85,7 @@ abstract public class Employee implements Serializable {
     }
 
     public void setAge(int age) {
-        this.age = (age > 0) ? age : 18; 
+        this.age = (age > 0) ? age : 18;
     }
 
     public Position getPo() {
@@ -93,11 +101,11 @@ abstract public class Employee implements Serializable {
     }
 
     public Boolean setName(String name) {
-        if(NameValidation.validateName(name)) {
+        if (NameValidation.validateName(name)) {
             this.name = name;
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 
     public EmployeeType getType() {
@@ -108,15 +116,16 @@ abstract public class Employee implements Serializable {
         this.type = type;
     }
 
+    
+
     @Override
     public String toString() {
         return "Employee [ID=" + ID + "\nname=" + name + "\ndep=" + dep + "\nage=" + age + "\npo=" + po + "\ntype="
                 + type + "]";
     }
 
-    
-   
+    public static void setNoOfEmployee(int noOfEmployee) {
+        Employee.noOfEmployee = noOfEmployee;
+    }
 
-
-    
 }

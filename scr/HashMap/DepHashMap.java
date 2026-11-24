@@ -29,13 +29,12 @@ public abstract class DepHashMap  {
 
     }
 
-/* 
+
     public static boolean doesExistByValue(Department dep) {
-        return deps.containsKey(dep);
+        return deps.containsValue(dep);
     }
-*/
     
-// Removes a department by normalized name and returns it (or null if not found).
+    // Removes a department by normalized name and returns it (or null if not found).
     public static Department remove(String name) {
         String normalized = Normalization.normalize(name);
         if (normalized == null) {
