@@ -9,7 +9,7 @@ abstract public class Employee implements Serializable {
     static private int noOfEmployee = 0;
     private int ID;
     private String name;
-    private String dep;
+    private Department dep;
     private int age;
     private Position po;
     private EmployeeType type;
@@ -27,9 +27,11 @@ abstract public class Employee implements Serializable {
             this.ID = newID();
     }
 
-    private void setEmployee(String name, String dep, int age, Position po, EmployeeType type) {
+    private void setEmployee(String name, String depName, int age, Position po, EmployeeType type) {
         setName(name);
-        setDep(dep);
+        Department d= setDep(depName);
+        if(d != null) d.addEmployee(this);
+        
         this.age = (age > 0) ? age : 18;
         this.po = po;
         this.type = type;
@@ -67,17 +69,16 @@ abstract public class Employee implements Serializable {
 
     }
 
-    public String getDep() {
+    public Department getDep() {
         return dep;
     }
 
-    public boolean setDep(String dep) {
-        Department found = DepHashMap.search(dep); // fi el function by7sl validation
-        if (found != null) {
-            this.dep = found.getName();
-            return true;
+    public Department setDep(String depName) {
+        Department dep = DepHashMap.search(depName); // fi el function by7sl validation
+        if (dep != null) {
+            this.dep = dep;
         }
-        return false;
+        return dep;
     }
 
     public int getAge() {

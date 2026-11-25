@@ -1,5 +1,6 @@
 package HashMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Employee.*;
@@ -39,6 +40,10 @@ public abstract class EmpHashMap {
         employees.putAll(loadedEmployees);
     }
         */
+
+    public static ArrayList<Employee> getAllEmployees() {
+        return new ArrayList<>(employees.values());
+    }
     
     public static void uploadEmployees(HashMap<Integer, Employee> loadedEmployees) {
         if (loadedEmployees == null)

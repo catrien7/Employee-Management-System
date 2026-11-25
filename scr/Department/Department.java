@@ -4,12 +4,13 @@ import java.io.Serializable;
 import Validation.DepNameValidation;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Department implements Serializable {
     private static int noOfDeps;
     private int ID;
     private String name;
-    private List<Employee> employees= new ArrayList<>();
+    private HashMap<Integer, Employee> employees = new HashMap<>();
 
 
     //expects valid and new name
@@ -18,19 +19,24 @@ public class Department implements Serializable {
         setName(name); 
     }
 
-    public Department( String name, List<Employee> employees) {
+    public Department( String name, HashMap<Integer, Employee> employees) {
         this( name);
         setEmployees(employees);
     }
 
     
-    public List<Employee> getEmployees() {
+    public HashMap<Integer, Employee> getEmployees() {
         return employees;
     }
 
 
-    public void setEmployees(List<Employee> employees) {
+    public void setEmployees(HashMap<Integer, Employee> employees) {
         this.employees = employees;
+    }
+
+    public Boolean addEmployee(Employee emp){
+        if(this.employees.putIfAbsent(emp.getID(),emp) != null) return true;
+        return false;
     }
 
 
