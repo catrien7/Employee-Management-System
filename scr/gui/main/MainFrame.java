@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import EmployeeManager.*;
 import gui.Panels.*;
 import GUI.DepartmentPanel;
+import GUI.UpdateEmployeePanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +44,7 @@ public class MainFrame extends JFrame {
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Employees", new ViewEmployeePanel(employeeManager));
+        tabs.addTab("Update / Delete Employees", new UpdateEmployeePanel());
         tabs.addTab("Departments", new DepartmentPanel());
         dashboard.add(header, BorderLayout.NORTH);
         dashboard.add(tabs, BorderLayout.CENTER);
