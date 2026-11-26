@@ -19,8 +19,13 @@ public class FileHandeler {
     catch (FileNotFoundException e) {
             return new HashMap<>();
          }
+    catch (InvalidClassException e) {
+     // The saved data was created by an incompatible class version. Start clean.
+     return new HashMap<>();
+    }
     catch (Exception e) {
-     throw new RuntimeException("Failed to load employees", e); 
+     // A damaged data file must not prevent the GUI from starting.
+     return new HashMap<>();
     }
     
 }
@@ -49,8 +54,13 @@ public class FileHandeler {
     catch (FileNotFoundException e) {
             return new HashMap<>();
          }
+    catch (InvalidClassException e) {
+     // The saved data was created by an incompatible class version. Start clean.
+     return new HashMap<>();
+    }
     catch (Exception e) {
-     throw new RuntimeException("Failed to load Departments", e); 
+     // A damaged data file must not prevent the GUI from starting.
+     return new HashMap<>();
     }
 }
  

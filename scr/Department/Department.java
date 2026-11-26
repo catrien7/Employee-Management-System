@@ -6,6 +6,8 @@ import Validation.DepNameValidation;
 import java.util.HashMap;
 
 public class Department implements Serializable {
+    // Keeps compatibility with department records written by the previous version.
+    private static final long serialVersionUID = 1312305879422417554L;
     private static int noOfDeps;
     private int ID;
     private String name;
