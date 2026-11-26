@@ -1,0 +1,9 @@
+# IDE and build output
+.idea/
+*.iml
+out/
+build/
+*.class
+
+# Runtime data files
+*.ser

@@ -61,6 +61,9 @@ public class Department implements Serializable {
         return noOfDeps;
     }
 
+    public static void setNoOfDeps(int value) {
+        noOfDeps = Math.max(0, value);
+    }
     public int getID() {
         return ID;
     }

@@ -2,8 +2,7 @@ package HashMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import Employee.*;
+import Employee.Employee;
 
 public abstract class EmpHashMap {
     private static final HashMap<Integer, Employee> employees = new HashMap<>();
@@ -31,12 +30,6 @@ public abstract class EmpHashMap {
     static public Boolean doesExist(Employee emp) {
         return employees.containsValue(emp);
     }
-
-    /* 
-    static public void uploadEmployees(HashMap<Integer, Employee> loadedEmployees) {
-        employees.putAll(loadedEmployees);
-    }
-        */
 
     public static ArrayList<Employee> getAllEmployees() {
         return new ArrayList<>(employees.values());

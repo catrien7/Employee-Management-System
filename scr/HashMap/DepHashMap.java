@@ -1,6 +1,7 @@
 package HashMap;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import Department.Department;
 import Validation.*;
 
@@ -50,10 +51,24 @@ public abstract class DepHashMap  {
         }
         return deps.get(normalized);
     }
-    static public void uploadDepartments(HashMap<String, Department> loadedDepartments){
-       deps.putAll(loadedDepartments);
+    // Returns all departments
+    public static ArrayList<Department> getAllDepartments() {
+        return new ArrayList<>(deps.values());
     }
 
+    /** Restores saved departments and advances the generated-ID counter. */
+    public static void uploadDepartments(HashMap<String, Department> loadedDepartments) {
+        if (loadedDepartments == null) return;
+        deps.putAll(loadedDepartments);
+        for (Department department : deps.values()) {
+            Department.setNoOfDeps(Math.max(Department.getNoOfDeps(), department.getID() - 100));
+        }
+    }
+
+    /** Returns a copy suitable for serialization. */
+    public static HashMap<String, Department> getDepartments() {
+        return new HashMap<>(deps);
+    }
 }
 
     
