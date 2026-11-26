@@ -64,7 +64,7 @@ public class ViewEmployeePanel extends JPanel {
         this.tableModel.addRow(new Object[] {
             emp.getID(),
             emp.getName(),
-            emp.getDep() == null ? "" : emp.getName(),
+            emp.getDep() == null ? "" : emp.getDepName(),
             emp.getPo(),
             emp.getType(),
             emp.calcSalary()
