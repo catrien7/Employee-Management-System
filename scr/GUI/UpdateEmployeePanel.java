@@ -6,6 +6,7 @@ import Employee.Position;
 import Department.Department;
 import Manager.DepartmentManager;
 import HashMap.EmpHashMap;
+import FileHandeler.FileHandeler;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
@@ -60,6 +61,12 @@ public class UpdateEmployeePanel extends JPanel {
         employeeTable.setSelectionMode(
                 ListSelectionModel.SINGLE_SELECTION
         );
+        employeeTable.getSelectionModel().addListSelectionListener(event -> {
+            if (!event.getValueIsAdjusting() && employeeTable.getSelectedRow() != -1) {
+                int id = (Integer) employeeTableModel.getValueAt(employeeTable.getSelectedRow(), 0);
+                loadEmployeeById(id);
+            }
+        });
 
         JScrollPane tableScrollPane = new JScrollPane(employeeTable);
 
@@ -130,6 +137,7 @@ public class UpdateEmployeePanel extends JPanel {
 
         // Load available departments
         loadDepartments();
+        refreshEmployeeTable();
 
         // Disable editing until an employee is loaded
         setFieldsEnabled(false);
@@ -154,6 +162,18 @@ public class UpdateEmployeePanel extends JPanel {
 
             int id = Integer.parseInt(idField.getText().trim());
 
+            loadEmployeeById(id);
+
+        } catch (NumberFormatException ex) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter a valid employee ID."
+            );
+        }
+    }
+
+    private void loadEmployeeById(int id) {
             selectedEmployee = EmpHashMap.IDsearch(id);
 
             if (selectedEmployee == null) {
@@ -188,20 +208,13 @@ public class UpdateEmployeePanel extends JPanel {
             );
 
             setFieldsEnabled(true);
-
-        } catch (NumberFormatException ex) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Please enter a valid employee ID."
-            );
-        }
     }
 
     // Update employee information
     private void updateEmployee() {
 
         if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Select an employee from the table first.");
             return;
         }
 
@@ -235,8 +248,8 @@ public class UpdateEmployeePanel extends JPanel {
                 return;
             }
 
-            // Update department
-            if (selectedEmployee.setDep(department) == null) {
+            Department newDepartment = departmentManager.findDepartment(department);
+            if (newDepartment == null) {
 
                 JOptionPane.showMessageDialog(
                         this,
@@ -246,12 +259,23 @@ public class UpdateEmployeePanel extends JPanel {
                 return;
             }
 
+            Department oldDepartment = selectedEmployee.getDep();
+            if (oldDepartment != newDepartment) {
+                if (oldDepartment != null) oldDepartment.removeEmployee(selectedEmployee.getID());
+                newDepartment.addEmployee(selectedEmployee);
+                selectedEmployee.setDep(newDepartment);
+            }
+
             // Update age and position
             selectedEmployee.setAge(age);
 
             selectedEmployee.setPo(
                     (Position) positionBox.getSelectedItem()
             );
+
+            FileHandeler.SaveEmployees(EmpHashMap.getEmployees());
+            departmentManager.saveDepartments();
+            refreshEmployeeTable();
 
             JOptionPane.showMessageDialog(
                     this,
@@ -271,6 +295,7 @@ public class UpdateEmployeePanel extends JPanel {
     private void deleteEmployee() {
 
         if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Select an employee from the table first.");
             return;
         }
 
@@ -283,8 +308,12 @@ public class UpdateEmployeePanel extends JPanel {
         );
 
         if (choice == JOptionPane.YES_OPTION) {
-
+            if (selectedEmployee.getDep() != null) {
+                selectedEmployee.getDep().removeEmployee(selectedEmployee.getID());
+            }
             EmpHashMap.delEmp(selectedEmployee.getID());
+            FileHandeler.SaveEmployees(EmpHashMap.getEmployees());
+            departmentManager.saveDepartments();
 
             JOptionPane.showMessageDialog(
                     this,
@@ -299,6 +328,7 @@ public class UpdateEmployeePanel extends JPanel {
             typeLabel.setText("Not loaded");
 
             setFieldsEnabled(false);
+            refreshEmployeeTable();
         }
     }
 

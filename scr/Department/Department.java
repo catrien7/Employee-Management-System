@@ -44,6 +44,10 @@ public class Department implements Serializable {
         return false;
     }
 
+    public Boolean removeEmployee(int employeeId) {
+        return employees.remove(employeeId) != null;
+    }
+
     /*
      * public Boolean addEmployee(Employee emp) {
      * 

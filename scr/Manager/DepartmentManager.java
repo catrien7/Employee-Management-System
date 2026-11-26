@@ -94,7 +94,7 @@ public class DepartmentManager {
         return true;
     }
 
-    private void saveDepartments() {
+    public void saveDepartments() {
         FileHandeler.SaveDepartments(DepHashMap.getDepartments());
     }
 }
