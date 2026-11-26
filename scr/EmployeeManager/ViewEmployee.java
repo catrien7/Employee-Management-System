@@ -8,7 +8,6 @@ public class ViewEmployee {
 
     // Returns all registered employees
     public static ArrayList<Employee> getAllEmployees() {
-
         return EmpHashMap.getAllEmployees();
     }
 

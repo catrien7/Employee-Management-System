@@ -5,6 +5,8 @@ import HashMap.*;
 import Validation.*;
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 abstract public class Employee implements Serializable {
     static private int noOfEmployee = 0;
     private int ID;
@@ -17,30 +19,29 @@ abstract public class Employee implements Serializable {
     // Expects valid parameters (name, dep, age, po, type).
     // Note: Does NOT automatically add the employee to the HashMap.
     public Employee(String name, String dep, int age, Position po, EmployeeType type) {
-        setEmployee(name, dep, age, po, type);
         this.ID = newID();
+        setEmployee(name, dep, age, po, type);
+        
     }
 
     public Employee(int ID, String name, String dep, int age, Position po, EmployeeType type) {
-        setEmployee(name, dep, age, po, type);
         if (!setID(ID))
             this.ID = newID();
+        setEmployee(name, dep, age, po, type);
     }
 
     private void setEmployee(String name, String depName, int age, Position po, EmployeeType type) {
         setName(name);
-        Department d= setDep(depName);
-        if(d != null) d.addEmployee(this);
-        
+        setDep(depName);
         this.age = (age > 0) ? age : 18;
         this.po = po;
         this.type = type;
     }
-    /* 
-    private int newID() {
-        return ++noOfEmployee + 1000;
-    }
-    */
+    /*
+     * private int newID() {
+     * return ++noOfEmployee + 1000;
+     * }
+     */
 
     private int newID() {
         int candidate;
@@ -64,8 +65,12 @@ abstract public class Employee implements Serializable {
         if (EmpIDValidation.validateEmpID(id)) {
             this.ID = id;
             return true;
-        } else
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Please enter a valid Employee ID");
+
             return false;
+        }
 
     }
 
@@ -73,9 +78,20 @@ abstract public class Employee implements Serializable {
         return dep;
     }
 
+    public String getDepName() {
+        return dep.getName();
+    }
+
     public Department setDep(String depName) {
         Department dep = DepHashMap.search(depName); // fi el function by7sl validation
         if (dep != null) {
+            this.dep = dep;
+        }
+        return dep;
+    }
+
+    public Department setDep(Department dep) {
+        if (dep!=null && DepHashMap.doesExistByValue(dep)) {
             this.dep = dep;
         }
         return dep;
@@ -116,8 +132,6 @@ abstract public class Employee implements Serializable {
     public void setType(EmployeeType type) {
         this.type = type;
     }
-
-    
 
     @Override
     public String toString() {

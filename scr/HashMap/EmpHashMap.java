@@ -9,8 +9,7 @@ public abstract class EmpHashMap {
     private static final HashMap<Integer, Employee> employees = new HashMap<>();
 
     static public Employee IDsearch(int id) {
-        Integer x = new Integer(id);
-        return employees.get(x);
+        return employees.get(id);
     }
 
     public static HashMap<Integer, Employee> getEmployees() {
@@ -18,12 +17,10 @@ public abstract class EmpHashMap {
     }
 
     static public Employee addEmp(int id, Employee emp) {
-        Integer x = new Integer(id);
-        return employees.putIfAbsent(x, emp);
+        return employees.putIfAbsent(id, emp);
     }
 
     static public Employee delEmp(int id) {
-        Integer x = new Integer(id);
         return employees.remove(id);
     }
 

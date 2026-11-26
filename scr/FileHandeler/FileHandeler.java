@@ -40,7 +40,7 @@ public class FileHandeler {
 
 
  public static HashMap<String, Department> LoadDepartments(){
-    try(FileInputStream file =new FileInputStream("Deparments.ser");
+    try(FileInputStream file =new FileInputStream("Departments.ser");
         ObjectInputStream fileIn=new ObjectInputStream(file)
     ){
         HashMap<String, Department>LoadedDepartments=(HashMap<String, Department>)fileIn.readObject();

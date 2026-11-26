@@ -1,7 +1,6 @@
 package search;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import Department.*;
@@ -17,10 +16,21 @@ public abstract class SearchByDep {
         return employeeSet;
     }
 
+    public static Set<Employee> depEmployees(Department dep){
+        if(dep==null) return null;
+        Set<Employee> employeeSet = new HashSet<>(dep.getEmployees().values());
+        return employeeSet;
+    }
+
     public static Employee empSearch(String dep, int id){
         Department d= DepHashMap.search(dep);
         if(d==null) return null;
         return d.getEmployees().get(id);
+    }
+
+    public static Employee empSearch(Department dep, int id){
+        if(dep==null) return null;
+        return dep.getEmployees().get(id);
     }
 
     
