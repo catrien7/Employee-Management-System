@@ -313,6 +313,7 @@ boolean empty=false;
         if(emp!=null){
           EmployeeManager.AddEmployee(emp);  //add to hash map and save to file
           JOptionPane.showMessageDialog(this, "Employee was added successfully","Operation done",JOptionPane.PLAIN_MESSAGE); 
+          //SaveButton.setEnabled(false);
         }
        }
        }
@@ -329,6 +330,8 @@ boolean empty=false;
         HoursRateField.setText("");
         IdField.setText("");
         IdCheck.setSelected(false);
+        IdField.setEnabled(false);
+        IdField.setBackground(Color.GRAY);
       }
     
     //|| (IsFieldEmpty(nameField)|IsFieldEmpty(AgeField)|IsFieldEmpty(HoursWorkedField)|IsFieldEmpty(HoursRateField))
