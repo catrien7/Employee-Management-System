@@ -7,7 +7,7 @@ return !(salary<10000 || salary>50000);
 }    
 
 static public Boolean ValidateBonus(int bonus){
-return !(bonus<500 || bonus>7000);
+return !(bonus<0 || bonus>7000);
 }    
 
 static public Boolean ValidateHours(int hours){

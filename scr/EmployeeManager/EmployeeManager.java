@@ -3,6 +3,7 @@ package EmployeeManager;
 import java.util.Collection;
 
 import Employee.*;
+import FileHandeler.FileHandeler;
 import HashMap.EmpHashMap;
 
 public class EmployeeManager {
@@ -92,5 +93,10 @@ public class EmployeeManager {
 
         return true;
     }
+
+    public static  void AddEmployee(Employee employee){
+    EmpHashMap.addEmp(employee.getID(), employee);
+    FileHandeler.SaveEmployees(EmpHashMap.getEmployees());
+  }
 
 }
