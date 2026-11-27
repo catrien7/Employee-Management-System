@@ -1,11 +1,9 @@
 
 package Manager;
-
 import Department.Department;
 import Employee.Employee;
 import HashMap.DepHashMap;
 import HashMap.EmpHashMap;
-import Validation.DepNameValidation;
 import FileHandeler.FileHandeler;
 import java.util.ArrayList;
 
@@ -19,7 +17,7 @@ public class DepartmentManager {
     public boolean addDepartment(String name) {
 
         // Check if the department name is valid
-        if (!DepNameValidation.isValid(name)) {
+        if (name == null || name.trim().isEmpty()) {
             return false;
         }
 

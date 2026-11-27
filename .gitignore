@@ -7,3 +7,4 @@ build/
 
 # Runtime data files
 *.ser
+/scr/nbproject/private/

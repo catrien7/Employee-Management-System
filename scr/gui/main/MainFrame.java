@@ -1,10 +1,10 @@
 package gui.main;
+import EmployeeManager.*;
+import gui.DepartmentPanel;
+import gui.Panels.*;
+import gui.UpdateEmployeePanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import EmployeeManager.*;
-import gui.Panels.*;
-import gui.DepartmentPanel;
-import gui.UpdateEmployeePanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +14,7 @@ import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame {
 
+    @SuppressWarnings("FieldMayBeFinal")
     private EmployeeManager employeeManager;
     private final CardLayout cards = new CardLayout();
     private final JPanel content = new JPanel(cards);
@@ -26,7 +27,7 @@ public class MainFrame extends JFrame {
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        content.add(new LoginPanel(this::showDashboard), "login");
+        content.add(new GUI.Panels.LoginPanel(this::showDashboard), "login");
         content.add(createDashboard(), "dashboard");
         add(content);
         cards.show(content, "login");
