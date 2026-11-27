@@ -1,16 +1,15 @@
+
 package gui.Panels;
 
 import java.awt.*;
 import java.util.Collection;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import Employee.*;
 import EmployeeManager.*;
-
 import HashMap.*;
 import search.*;
+import gui.Components.EmployeeTable;
 
 public class SearchEmployeePanel extends JPanel {
 
@@ -20,8 +19,7 @@ public class SearchEmployeePanel extends JPanel {
     private JTextField searchField;
     private JButton searchButton;
 
-    private JTable resultTable;
-    private DefaultTableModel tableModel;
+    private EmployeeTable employeeTable;
 
     public SearchEmployeePanel(EmployeeManager employeeManager) {
 
@@ -29,7 +27,6 @@ public class SearchEmployeePanel extends JPanel {
 
         setLayout(new BorderLayout(10, 10));
 
-        // Search controls
         JPanel searchPanel = new JPanel(new FlowLayout());
 
         searchType = new JComboBox<>(
@@ -37,7 +34,6 @@ public class SearchEmployeePanel extends JPanel {
         );
 
         searchField = new JTextField(15);
-
         searchButton = new JButton("Search");
 
         searchPanel.add(new JLabel("Search By:"));
@@ -47,46 +43,28 @@ public class SearchEmployeePanel extends JPanel {
 
         add(searchPanel, BorderLayout.NORTH);
 
-        // Table
-        String[] columns = {
-            "ID", "Name", "Department",
-            "Position", "Type", "Salary"
-        };
+        employeeTable = new EmployeeTable();
 
-        tableModel = new DefaultTableModel(columns, 0) {
+        add(employeeTable, BorderLayout.CENTER);
 
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        resultTable = new JTable(tableModel);
-
-        add(new JScrollPane(resultTable), BorderLayout.CENTER);
-
-        // Search action
         searchButton.addActionListener(e -> search());
-
         searchField.addActionListener(e -> search());
     }
 
     private void search() {
 
-        // Clear previous results
-        tableModel.setRowCount(0);
+        employeeTable.clearTable();
 
         String value = searchField.getText().trim();
 
         if (value.isEmpty()) {
             JOptionPane.showMessageDialog(
-                this,
-                "Please enter a search value"
+                this, "Please enter a search value"
             );
             return;
         }
 
-        String type = (String) searchType.getSelectedItem();  //getSelectedItem() returns object
+        String type = (String) searchType.getSelectedItem();
 
         if (type.equals("ID")) {
 
@@ -97,14 +75,13 @@ public class SearchEmployeePanel extends JPanel {
                 Employee emp = SearchByID.search(id);
 
                 if (emp != null) {
-                    addEmployeeRow(emp);
+                    employeeTable.addEmployee(emp);
                 }
 
             } catch (NumberFormatException ex) {
 
                 JOptionPane.showMessageDialog(
-                    this,
-                    "ID must be a valid number"
+                    this, "ID must be a valid number"
                 );
                 return;
             }
@@ -112,41 +89,16 @@ public class SearchEmployeePanel extends JPanel {
         } else {
 
             Collection<Employee> employees =
-                SearchByDep.depEmployees(value);
+                SearchByDep.depEmployees(value); //set implements collection
 
-            for (Employee emp : employees) {
-                addEmployeeRow(emp);
-            }
+            employeeTable.addEmployees(employees);
         }
 
-        if (tableModel.getRowCount() == 0) {
+        if (employeeTable.getModel().getRowCount() == 0) {
 
             JOptionPane.showMessageDialog(
-                this,
-                "No employees found"
+                this, "No employees found"
             );
         }
-    }
-
-    private void addEmployeeRow(Employee emp) {
-
-        tableModel.addRow(new Object[]{
-
-            emp.getID(),
-            emp.getName(),
-
-            emp.getDep() == null
-                ? ""
-                : emp.getDep().getName(),
-
-            emp.getPo(),
-            emp.getType(),
-            emp.calcSalary()
-
-        });
-    }
-
-    public JTable getResultTable() {
-        return resultTable;
     }
 }
