@@ -29,11 +29,15 @@ public class SearchEmployeePanelTest {
             SearchEmployeePanel searchPanel =
                 new SearchEmployeePanel(manager);
 
+            DepartmentPanel depPanel = 
+                new DepartmentPanel();
+
             // Tabs
             JTabbedPane tabs = new JTabbedPane();
 
             tabs.addTab("View Employees", viewPanel);
             tabs.addTab("Search Employees", searchPanel);
+            tabs.addTab("Manage Departments", depPanel);
 
             frame.add(tabs);
 

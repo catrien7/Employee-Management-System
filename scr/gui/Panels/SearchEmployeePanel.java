@@ -58,9 +58,7 @@ public class SearchEmployeePanel extends JPanel {
         String value = searchField.getText().trim();
 
         if (value.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                this, "Please enter a search value"
-            );
+            JOptionPane.showMessageDialog(this, "Please enter a search value");
             return;
         }
 
@@ -96,9 +94,7 @@ public class SearchEmployeePanel extends JPanel {
 
         if (employeeTable.getModel().getRowCount() == 0) {
 
-            JOptionPane.showMessageDialog(
-                this, "No employees found"
-            );
+            JOptionPane.showMessageDialog(this, "No employees found");
         }
     }
 }
