@@ -1,8 +1,8 @@
 package HashMap;
 
-import java.util.HashMap;
 import Department.Department;
 import Validation.*;
+import java.util.HashMap;
 
 public abstract class DepHashMap  {
     // Global registry of departments keyed by normalized department name.

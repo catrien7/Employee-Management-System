@@ -1,9 +1,8 @@
 package HashMap;
 
+import Employee.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import Employee.*;
 
 public abstract class EmpHashMap {
     private static final HashMap<Integer, Employee> employees = new HashMap<>();

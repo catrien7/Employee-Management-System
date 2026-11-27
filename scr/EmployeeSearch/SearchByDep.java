@@ -1,11 +1,10 @@
-package search;
-
-import java.util.HashSet;
-import java.util.Set;
+package EmployeeSearch;
 
 import Department.*;
 import Employee.Employee;
 import HashMap.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class SearchByDep {
     

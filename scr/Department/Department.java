@@ -1,8 +1,8 @@
 package Department;
 
 import Employee.*;
-import java.io.Serializable;
 import Validation.DepNameValidation;
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class Department implements Serializable {
@@ -12,11 +12,15 @@ public class Department implements Serializable {
     private HashMap<Integer, Employee> employees = new HashMap<>();
 
     // expects valid and new name
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+
     public Department(String name) {
         ID = newID();
         setName(name);
     }
 
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    
     public Department(String name, HashMap<Integer, Employee> employees) {
         this(name);
         setEmployees(employees);

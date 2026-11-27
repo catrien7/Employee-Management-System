@@ -4,7 +4,6 @@ import Department.*;
 import HashMap.*;
 import Validation.*;
 import java.io.Serializable;
-
 import javax.swing.JOptionPane;
 
 abstract public class Employee implements Serializable {
@@ -24,6 +23,8 @@ abstract public class Employee implements Serializable {
         
     }
 
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    
     public Employee(int ID, String name, String dep, int age, Position po, EmployeeType type) {
         if (!setID(ID))
             this.ID = newID();
@@ -83,11 +84,11 @@ abstract public class Employee implements Serializable {
     }
 
     public Department setDep(String depName) {
-        Department dep = DepHashMap.search(depName); // fi el function by7sl validation
-        if (dep != null) {
-            this.dep = dep;
+        Department foundDep = DepHashMap.search(depName); // fi el function by7sl validation
+        if (foundDep != null) {
+            this.dep = foundDep;
         }
-        return dep;
+        return foundDep;
     }
 
     public Department setDep(Department dep) {

@@ -14,8 +14,7 @@ public abstract class DepNameValidation {
         String normalized = Normalization.normalize(name);
 
         // Return false if a department with this normalized name already exists.
-        if(DepHashMap.doesExistByKey(normalized)) return false;
-        else return true;
+        return !DepHashMap.doesExistByKey(normalized);
         
 
     }
