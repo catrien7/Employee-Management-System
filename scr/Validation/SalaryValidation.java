@@ -10,7 +10,7 @@ return true;
 }    
 
 static public Boolean ValidateBonus(int bonus){
-if (bonus<500 || bonus>7000) {
+if ((bonus<0 || bonus>7000)) {
     return false;
 }
 return true;

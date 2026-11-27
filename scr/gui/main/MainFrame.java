@@ -19,9 +19,15 @@ public class MainFrame extends JFrame {
 
         ViewEmployeePanel viewPanel =
             new ViewEmployeePanel(employeeManager);
+        AddEmployeePanel addPanel =
+            new AddEmployeePanel(employeeManager);
 
-        add(viewPanel);
 
+
+
+
+         //add(viewPanel);
+         add(addPanel);
         setVisible(true);
     }
 }

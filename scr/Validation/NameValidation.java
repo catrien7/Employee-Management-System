@@ -7,6 +7,11 @@ abstract public class NameValidation {
         if (name == null) {
             return false;
         }
+        for (char c : name.toCharArray()) {
+        if (!Character.isLetter(c)) {
+            return false;
+        }
+    }
         return !name.trim().isEmpty();
     }
 }
