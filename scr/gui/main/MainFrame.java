@@ -1,8 +1,6 @@
 package GUI.main;
 import EmployeeManager.*;
-import GUI.*;
-import GUI.Panels.ViewEmployeePanel;
-
+import GUI.Panels.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JButton;
