@@ -2,7 +2,7 @@ package Department;
 
 import Employee.*;
 import java.io.Serializable;
-import Validation.DepNameValidation;
+import Validation.*;
 import java.util.HashMap;
 
 public class Department implements Serializable {

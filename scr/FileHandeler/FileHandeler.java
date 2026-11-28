@@ -1,10 +1,13 @@
 package FileHandeler;
-import java.io.*;
-//import HashMap.EmpHashMap;
-//import java.io.IOException;
+
+
 import java.util.HashMap;
-import Employee.Employee;
-import Department.Department;
+import java.util.ArrayList;
+import java.io.*;
+import HashMap.*;
+import java.io.IOException;
+import Employee.*;
+import Department.*;
 
 public class FileHandeler {
 
@@ -27,9 +30,9 @@ public class FileHandeler {
      // A damaged data file must not prevent the GUI from starting.
      return new HashMap<>();
     }
-    
+
 }
-    
+
 
  public static void SaveEmployees(HashMap<Integer,Employee> employees){
    try (FileOutputStream file = new FileOutputStream("employees.ser");
@@ -63,8 +66,8 @@ public class FileHandeler {
      return new HashMap<>();
     }
 }
- 
- 
+
+
  public static void SaveDepartments(HashMap<String, Department>Departments){
    try (FileOutputStream file = new FileOutputStream("Departments.ser");
         ObjectOutputStream fileOut=new ObjectOutputStream(file)
@@ -87,6 +90,3 @@ public class FileHandeler {
 
 
  }
-
- 
-

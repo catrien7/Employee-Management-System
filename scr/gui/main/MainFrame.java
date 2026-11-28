@@ -1,8 +1,8 @@
-package gui.main;
+package GUI.main;
 import EmployeeManager.*;
-import gui.DepartmentPanel;
-import gui.Panels.*;
-import gui.UpdateEmployeePanel;
+import GUI.*;
+import GUI.Panels.ViewEmployeePanel;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JButton;
@@ -26,8 +26,8 @@ public class MainFrame extends JFrame {
         setTitle("Employee Management System");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        content.add(new GUI.Panels.LoginPanel(this::showDashboard), "login");
+//this::showDashboard
+        content.add(new GUI.Panels.LoginPanel(), "login");
         content.add(createDashboard(), "dashboard");
         add(content);
         cards.show(content, "login");

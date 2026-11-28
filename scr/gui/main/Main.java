@@ -1,4 +1,4 @@
-package gui.main;
+package GUI.main;
 import EmployeeManager.EmployeeManager;
 import javax.swing.SwingUtilities;
 

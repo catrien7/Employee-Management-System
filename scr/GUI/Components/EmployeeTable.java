@@ -1,5 +1,5 @@
 
-package gui.Components;
+package GUI.Components;
 
 import java.awt.BorderLayout;
 import javax.swing.*;

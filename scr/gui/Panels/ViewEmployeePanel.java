@@ -1,10 +1,10 @@
-package gui.Panels;
+package GUI.Panels;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import EmployeeManager.*;
-import gui.Components.EmployeeTable;
+import GUI.Components.EmployeeTable;
 
 public class ViewEmployeePanel extends JPanel {
 

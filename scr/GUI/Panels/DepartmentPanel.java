@@ -1,5 +1,5 @@
 
-package gui.Panels;
+package GUI.Panels;
 
 import Department.Department;
 import Manager.DepartmentManager;

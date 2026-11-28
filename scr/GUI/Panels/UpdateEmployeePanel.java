@@ -1,5 +1,5 @@
 
-package gui.Panels;
+package GUI.Panels;
 
 import Employee.Employee;
 import Employee.Position;

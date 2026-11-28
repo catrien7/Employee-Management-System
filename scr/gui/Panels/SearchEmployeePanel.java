@@ -1,5 +1,5 @@
 
-package gui.Panels;
+package GUI.Panels;
 
 import java.awt.*;
 import java.util.Collection;
@@ -9,7 +9,10 @@ import Employee.*;
 import EmployeeManager.*;
 import HashMap.*;
 import search.*;
-import gui.Components.EmployeeTable;
+import GUI.*;
+import GUI.Components.EmployeeTable;
+
+
 
 public class SearchEmployeePanel extends JPanel {
 

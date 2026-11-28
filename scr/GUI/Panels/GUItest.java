@@ -1,12 +1,12 @@
 
-package gui.Panels;
+package GUI.Panels;
 
 import javax.swing.*;
 
-import gui.Panels.*;
+import GUI.Panels.*;
 import EmployeeManager.*;
 
-public class SearchEmployeePanelTest {
+public class GUItest {
 
     public static void main(String[] args) {
 
