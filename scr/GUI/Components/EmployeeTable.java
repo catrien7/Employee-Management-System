@@ -1,12 +1,11 @@
 
 package GUI.Components;
 
+import Employee.Employee;
 import java.awt.BorderLayout;
+import java.util.Collection;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import Employee.Employee;
-import java.util.Collection;
 
 public class EmployeeTable extends JPanel {
 

@@ -1,4 +1,4 @@
-package GUI.Panels;
+package gui.Panels;
 import EmployeeManager.Login;
 import java.awt.*;
 import javax.swing.*;

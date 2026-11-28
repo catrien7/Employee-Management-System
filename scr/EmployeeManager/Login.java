@@ -15,7 +15,7 @@ public class Login {
             return false;
         }
 
-        return username.equalsIgnoreCase(USERNAME)
+        return username.equals(USERNAME)
                 && password.equals(PASSWORD);
     }
 }
